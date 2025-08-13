@@ -1,49 +1,89 @@
-# 📈 StockAgent - 股票分析 AI 代理工具集
+# 📈 StockAgent - 企业级 AI 金融分析工具集
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**StockAgent** 是一个专为大语言模型（LLM）设计的强大金融工具集。它通过提供一系列即插即用的 API，使 AI 代理（Agent）能够无缝接入实时股票数据和进行复杂的技术分析，将自然语言查询转化为精准的金融数据洞察。
+**StockAgent** 是一个专为大语言模型（LLM）打造的、功能全面的金融分析工具集。它通过提供一系列即插即用的 API，将强大的 AI 代理（Agent）与实时、准确的金融数据和复杂的分析模型连接起来，实现了从自然语言到深度金融洞察的无缝转换。
 
 ## 🌟 核心特点
 
--   **自然语言驱动**: 设计初衷是让用户通过对话式交互获取金融信息。AI 代理可以智能地解析用户意图，并调用本工具集中的相应功能。
--   **实时数据接入**: 集成了业界知名的 [Tushare Pro](https://tushare.pro/) 数据接口，确保提供准确、及时的中国 A 股市场行情数据。
--   **强大的分析能力**: 不仅仅是数据查询。内置了核心技术指标的计算引擎，能够处理复杂的时序数据，为量化分析和投资决策提供支持。
--   **为 AI Agent 深度优化**: 所有工具的接口（输入/输出）都经过精心设计，遵循严格的、可被 JSON 序列化的数据结构，确保与主流 LLM 框架（如 LangChain, LlamaIndex）和 AI 开发平台（如 Cherry Studio）完美兼容。
--   **轻量且可扩展**: 基于高性能的 `mcp-server` 构建，资源占用小，响应迅速。模块化的代码结构使得添加新的金融数据源或自定义分析工具变得异常简单。
+-   **全链路覆盖**: 工具集涵盖从**数据获取**、**技术分析**、**基本面查询**到**信息检索**的全部分析链路，为构建复杂的金融工作流提供了坚实基础。
+-   **自然语言驱动**: 专为对话式交互设计。AI 代理能够智能地解析用户意图，并在 20 个工具中自主选择、组合使用，以完成任务。
+-   **实时与准确**: 所有数据均通过 [Tushare Pro](https://tushare.pro/) 接口实时获取，保证了信息的时效性和准确性。
+-   **为 AI Agent 深度优化**: 所有工具的接口（输入/输出）都经过精心设计，遵循严格的、可被 JSON 序列化的数据结构，确保与主流 LLM 框架和 AI 开发平台（如 Cherry Studio）完美兼容。
+-   **高度可扩展**: 基于 `mcp-server` 构建，模块化的代码结构使得添加新的金融数据源或自定义分析工具变得异常简单。
 
 ## 📸 功能演示
 
-下图展示了 StockAgent 在 AI 应用平台中的实际工作流程：用户用自然语言提出需求，Agent 自动调用 `get_stock_price_volume` 工具获取数据，并以结构化格式返回。
+下图展示了 StockAgent 在 AI 应用平台中的一个典型工作流程：用户通过自然语言提出一个多步骤的分析需求，Agent 能够自主规划，并依次调用 `search_stock_code`、`get_stock_price_volume` 和 `calculate_technical_indicators` 工具，最终形成完整的分析报告。
+
 
 
 ![StockAgent 演示](./docs/demo.png)
 
+---
+
+## 🛠️ 全功能工具集一览
+
+StockAgent 提供了 20 个精心设计的工具，分为以下几大类：
+
+### 1. 市场行情与数据获取
+
+| 工具名称 | 功能描述 |
+| :--- | :--- |
+| **`get_stock_price_volume`** | 获取指定股票在日期范围内的量价历史数据。 |
+| **`get_index_price`** | 获取大盘指数（如上证指数）的行情数据。 |
+| **`get_latest_trade_date`** | 获取A股市场最近的一个交易日。 |
+
+### 2. 技术分析与计算
+
+| 工具名称 | 功能描述 |
+| :--- | :--- |
+| **`calculate_technical_indicators`** | 计算常用技术指标（MA, RSI, MACD）。 |
+| **`calculate_bollinger_bands`** | 计算布林带（BOLL）指标。 |
+| **`calculate_period_return`** | 计算给定数据区间的累计涨跌幅。 |
+| **`calculate_data_summary`** | 对数据列进行基础统计分析（均值、标准差等）。 |
+| **`find_price_breakthrough`** | 在价格数据中查找向上或向下突破指定价格水平的日期。 |
+| **`get_candlestick_pattern`** | 简单识别日K线的基本形态（阳线、阴线、十字星）。 |
+
+### 3. 公司基本面与财务
+
+| 工具名称 | 功能描述 |
+| :--- | :--- |
+| **`get_stock_basic_info`** | 获取单个股票的基本信息（名称、行业、上市日期等）。 |
+| **`get_financial_indicators`** | 获取公司指定报告期的主要财务指标（PE, PB, EPS等）。 |
+| **`get_top10_shareholders`** | 查询公司指定报告期的前十大股东信息。 |
+| **`check_if_st_stock`** | 检查一只股票当前是否为ST或*ST股。 |
+
+### 4. 信息检索与筛选
+
+| 工具名称 | 功能描述 |
+| :--- | :--- |
+| **`search_stock_code`** | 根据关键词（公司名称或代码）模糊搜索匹配的股票列表。 |
+| **`get_stocks_by_industry`** | 获取指定行业分类下的所有股票列表。 |
+| **`get_company_news`** | 查询上市公司在指定日期范围内的公告。 |
+| **`filter_high_dividend_stocks`** | 筛选出股息率高于某个阈值的股票列表。 |
+
+### 5. 特色与持股数据
+
+| 工具名称 | 功能描述 |
+| :--- | :--- |
+| **`get_top_list_data`** | 获取指定交易日的龙虎榜机构明细数据。 |
+| **`get_hk_hold_data`** | 获取沪深港通对某只A股的持股明细。 |
+| **`compare_two_stocks_price`** | 比较两只股票在指定日期的收盘价。 |
 
 ---
 
-## 🛠️ 内置工具集一览
+## 💡 复杂工作流示例 (Workflow Examples)
 
-### 1. 实时行情查询 (`get_stock_price_volume`)
+StockAgent 的真正威力在于其组合能力。Agent 可以将上述工具链接起来，完成复杂的分析任务：
 
--   **功能**: 根据指定的股票代码和日期范围，精确获取历史日线行情。
--   **输出**: 返回包含交易日期、开盘价、收盘价、最高价、最低价和成交量的结构化数据。
--   **应用场景**: “查询贵州茅台（600519.SH）上周的股价表现。”
+-   **市场扫描与深度分析**:
+    > "帮我筛选出白酒行业中，当前市盈率低于30，并且最近一个月RSI指标低于40的股票。"
+    -   **Agent 路径**: `get_stocks_by_industry` -> (循环) `get_financial_indicators` -> (过滤) `get_stock_price_volume` -> (过滤) `calculate_technical_indicators` -> (过滤) -> **最终报告**
 
-### 2. 技术指标计算 (`calculate_technical_indicators`)
-
--   **功能**: 基于输入的行情数据，动态计算多种关键技术指标。
--   **支持指标**:
-    -   **移动平均线 (Moving Averages)**: MA20, MA50
-    -   **相对强弱指数 (Relative Strength Index)**: RSI (14)
-    -   **平滑异同移动平均线 (MACD)**: MACD Line, Signal Line
--   **应用场景**: “获取平安银行（000001.SZ）最近一个月的行情数据，并计算其 RSI 和 MACD 指标。”
-
----
-
-## 💡 设计理念
-
-StockAgent 的核心理念是**“为智能体赋能”**。我们相信，未来的人机交互将更多地依赖于能够理解上下文并自主调用工具的 AI 代理。StockAgent 正是这一理念在金融领域的实践，它扮演着连接自然语言和复杂金融数据世界的桥梁角色。
+-   **事件驱动分析**:
+    > "查询一下贵州茅台最近发布了什么公告，并分析公告发布后五天的股价走势和技术指标变化。"
+    -   **Agent 路径**: `get_company_news` -> (获取公告日期) `get_stock_price_volume` -> `calculate_period_return` + `calculate_technical_indicators` -> **综合回答**
 
 ## 📜 许可证
 
