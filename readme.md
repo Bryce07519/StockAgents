@@ -1,90 +1,90 @@
-# 📈 StockAgent - 企业级 AI 金融分析工具集
+# 📈 StockAgent - An Enterprise-Grade AI Financial Analysis Toolkit
+
+[**简体中文**](README_zh.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**StockAgent** 是一个专为大语言模型（LLM）打造的、功能全面的金融分析工具集。它通过提供一系列即插即用的 API，将强大的 AI 代理（Agent）与实时、准确的金融数据和复杂的分析模型连接起来，实现了从自然语言到深度金融洞察的无缝转换。
+**StockAgent** is a comprehensive financial analysis toolkit designed specifically for Large Language Models (LLMs). It bridges the gap between powerful AI Agents and real-time, accurate financial data by providing a suite of plug-and-play APIs. This enables a seamless transition from natural language queries to deep financial insights.
 
-## 🌟 核心特点
+## 🌟 Core Features
 
--   **全链路覆盖**: 工具集涵盖从**数据获取**、**技术分析**、**基本面查询**到**信息检索**的全部分析链路，为构建复杂的金融工作流提供了坚实基础。
--   **自然语言驱动**: 专为对话式交互设计。AI 代理能够智能地解析用户意图，并在 20 个工具中自主选择、组合使用，以完成任务。
--   **实时与准确**: 所有数据均通过 [Tushare Pro](https://tushare.pro/) 接口实时获取，保证了信息的时效性和准确性。
--   **为 AI Agent 深度优化**: 所有工具的接口（输入/输出）都经过精心设计，遵循严格的、可被 JSON 序列化的数据结构，确保与主流 LLM 框架和 AI 开发平台（如 Cherry Studio）完美兼容。
--   **高度可扩展**: 基于 `mcp-server` 构建，模块化的代码结构使得添加新的金融数据源或自定义分析工具变得异常简单。
+-   **Full-Spectrum Coverage**: The toolkit covers the entire analysis chain, from **data retrieval**, **technical analysis**, and **fundamental queries** to **information retrieval**, providing a solid foundation for building complex financial workflows.
+-   **Natural Language Driven**: Designed for conversational interaction. The AI Agent can intelligently parse user intent and autonomously select, combine, and utilize any of the 20 available tools to accomplish tasks.
+-   **Real-time & Accurate**: All data is sourced in real-time via the [Tushare Pro](https://tushare.pro/) API, ensuring the timeliness and accuracy of the information, primarily focused on the Chinese A-share market.
+-   **Deeply Optimized for AI Agents**: All tool interfaces (inputs/outputs) are meticulously designed with a strict, JSON-serializable data structure, guaranteeing perfect compatibility with mainstream LLM frameworks and AI development platforms like Cherry Studio.
+-   **Highly Extensible**: Built on `mcp-server`, its modular code structure makes it exceptionally easy to add new financial data sources or custom analysis tools.
 
-## 📸 功能演示
+## 📸 Functional Demo
 
-下图展示了 StockAgent 在 AI 应用平台中的一个典型工作流程：用户通过自然语言提出一个多步骤的分析需求，Agent 能够自主规划，并依次调用 `search_stock_code`、`get_stock_price_volume` 和 `calculate_technical_indicators` 工具，最终形成完整的分析报告。
+The following demonstrates a typical workflow of StockAgent within an AI application platform. A user issues a multi-step analysis request in natural language, and the Agent autonomously plans and executes a sequence of tools (`search_stock_code`, `get_stock_price_volume`, `calculate_technical_indicators`) to generate a complete report.
 
-
-
-![StockAgent 演示](./docs/demo.png)
+![StockAgent Demo](./docs/demo.png)
 
 ---
 
-## 🛠️ 全功能工具集一览
+## 🛠️ The Complete Toolkit at a Glance
 
-StockAgent 提供了 20 个精心设计的工具，分为以下几大类：
+StockAgent provides 20 well-designed tools, categorized as follows:
 
-### 1. 市场行情与数据获取
+### 1. Market Data & Price Retrieval
 
-| 工具名称 | 功能描述 |
+| Tool Name | Description |
 | :--- | :--- |
-| **`get_stock_price_volume`** | 获取指定股票在日期范围内的量价历史数据。 |
-| **`get_index_price`** | 获取大盘指数（如上证指数）的行情数据。 |
-| **`get_latest_trade_date`** | 获取A股市场最近的一个交易日。 |
+| **`get_stock_price_volume`** | Fetches historical price and volume data for a specified stock within a date range. |
+| **`get_index_price`** | Retrieves market index data (e.g., Shanghai Composite Index). |
+| **`get_latest_trade_date`** | Gets the most recent trading day for the A-share market. |
 
-### 2. 技术分析与计算
+### 2. Technical Analysis & Calculation
 
-| 工具名称 | 功能描述 |
+| Tool Name | Description |
 | :--- | :--- |
-| **`calculate_technical_indicators`** | 计算常用技术指标（MA, RSI, MACD）。 |
-| **`calculate_bollinger_bands`** | 计算布林带（BOLL）指标。 |
-| **`calculate_period_return`** | 计算给定数据区间的累计涨跌幅。 |
-| **`calculate_data_summary`** | 对数据列进行基础统计分析（均值、标准差等）。 |
-| **`find_price_breakthrough`** | 在价格数据中查找向上或向下突破指定价格水平的日期。 |
-| **`get_candlestick_pattern`** | 简单识别日K线的基本形态（阳线、阴线、十字星）。 |
+| **`calculate_technical_indicators`** | Calculates common technical indicators (MA, RSI, MACD). |
+| **`calculate_bollinger_bands`** | Calculates Bollinger Bands (BOLL). |
+| **`calculate_period_return`** | Computes the cumulative return over a given data period. |
+| **`calculate_data_summary`** | Performs basic statistical analysis on a data column (mean, std, etc.). |
+| **`find_price_breakthrough`** | Identifies dates when the price breaks above or below a specified level. |
+| **`get_candlestick_pattern`** | Performs simple recognition of daily candlestick patterns (e.g., Bullish, Bearish, Doji). |
 
-### 3. 公司基本面与财务
+### 3. Corporate Fundamentals & Financials
 
-| 工具名称 | 功能描述 |
+| Tool Name | Description |
 | :--- | :--- |
-| **`get_stock_basic_info`** | 获取单个股票的基本信息（名称、行业、上市日期等）。 |
-| **`get_financial_indicators`** | 获取公司指定报告期的主要财务指标（PE, PB, EPS等）。 |
-| **`get_top10_shareholders`** | 查询公司指定报告期的前十大股东信息。 |
-| **`check_if_st_stock`** | 检查一只股票当前是否为ST或*ST股。 |
+| **`get_stock_basic_info`** | Retrieves basic information about a single stock (name, industry, listing date). |
+| **`get_financial_indicators`** | Fetches key financial indicators (PE, PB, EPS) for a specific reporting period. |
+| **`get_top10_shareholders`** | Queries the top 10 shareholders for a company in a given period. |
+| **`check_if_st_stock`** | Checks if a stock is currently designated as "ST" (Special Treatment). |
 
-### 4. 信息检索与筛选
+### 4. Information Retrieval & Screening
 
-| 工具名称 | 功能描述 |
+| Tool Name | Description |
 | :--- | :--- |
-| **`search_stock_code`** | 根据关键词（公司名称或代码）模糊搜索匹配的股票列表。 |
-| **`get_stocks_by_industry`** | 获取指定行业分类下的所有股票列表。 |
-| **`get_company_news`** | 查询上市公司在指定日期范围内的公告。 |
-| **`filter_high_dividend_stocks`** | 筛选出股息率高于某个阈值的股票列表。 |
+| **`search_stock_code`** | Performs a fuzzy search for stocks based on keywords (company name or code). |
+| **`get_stocks_by_industry`** | Retrieves a list of all stocks within a specified industry category. |
+| **`get_company_news`** | Queries for company announcements within a specified date range. |
+| **`filter_high_dividend_stocks`** | Screens for stocks with a dividend yield higher than a certain threshold. |
 
-### 5. 特色与持股数据
+### 5. Specialized & Holdings Data
 
-| 工具名称 | 功能描述 |
+| Tool Name | Description |
 | :--- | :--- |
-| **`get_top_list_data`** | 获取指定交易日的龙虎榜机构明细数据。 |
-| **`get_hk_hold_data`** | 获取沪深港通对某只A股的持股明细。 |
-| **`compare_two_stocks_price`** | 比较两只股票在指定日期的收盘价。 |
+| **`get_top_list_data`** | Fetches the "Dragon and Tiger List" (top trading seats) data for a specific day. |
+| **`get_hk_hold_data`** | Retrieves detailed holdings data from the HK-Stock Connect for an A-share stock. |
+| **`compare_two_stocks_price`** | Compares the closing prices of two stocks on a specific date. |
 
 ---
 
-## 💡 复杂工作流示例 (Workflow Examples)
+## 💡 Complex Workflow Examples
 
-StockAgent 的真正威力在于其组合能力。Agent 可以将上述工具链接起来，完成复杂的分析任务：
+The true power of StockAgent lies in its ability to chain tools together. An Agent can link these functions to perform sophisticated analysis tasks:
 
--   **市场扫描与深度分析**:
-    > "帮我筛选出白酒行业中，当前市盈率低于30，并且最近一个月RSI指标低于40的股票。"
-    -   **Agent 路径**: `get_stocks_by_industry` -> (循环) `get_financial_indicators` -> (过滤) `get_stock_price_volume` -> (过滤) `calculate_technical_indicators` -> (过滤) -> **最终报告**
+-   **Market Scan & In-depth Analysis**:
+    > "Find stocks in the 'Baijiu' industry with a P/E ratio below 30 and an RSI below 40 over the last month."
+    -   **Agent's Path**: `get_stocks_by_industry` -> (Loop) `get_financial_indicators` -> (Filter) `get_stock_price_volume` -> (Filter) `calculate_technical_indicators` -> (Filter) -> **Final Report**
 
--   **事件驱动分析**:
-    > "查询一下贵州茅台最近发布了什么公告，并分析公告发布后五天的股价走势和技术指标变化。"
-    -   **Agent 路径**: `get_company_news` -> (获取公告日期) `get_stock_price_volume` -> `calculate_period_return` + `calculate_technical_indicators` -> **综合回答**
+-   **Event-Driven Analysis**:
+    > "What were the latest announcements from Kweichow Moutai, and how did its stock price and technical indicators change in the five days following the announcement?"
+    -   **Agent's Path**: `get_company_news` -> (Get Date) `get_stock_price_volume` -> `calculate_period_return` + `calculate_technical_indicators` -> **Synthesized Answer**
 
-## 📜 许可证
+## 📜 License
 
-本项目采用 [MIT License](LICENSE) 开源。
+This project is licensed under the [MIT License](LICENSE).
